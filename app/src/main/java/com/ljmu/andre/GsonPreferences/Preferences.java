@@ -1,5 +1,6 @@
 package com.ljmu.andre.GsonPreferences;
 
+import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Environment;
@@ -16,6 +17,7 @@ import com.google.gson.reflect.TypeToken;
 import com.ljmu.andre.ConstantDefiner.Constant;
 import com.ljmu.andre.GsonPreferences.PreferenceUtils.PreferenceMapDeserialiser;
 import com.ljmu.andre.snaptools.HangErrorActivity;
+import com.ljmu.andre.snaptools.STApplication;
 import com.ljmu.andre.snaptools.Utils.Assert;
 import com.ljmu.andre.snaptools.Utils.Constants;
 import com.ljmu.andre.snaptools.Utils.FileUtils;
@@ -215,6 +217,9 @@ public class Preferences {
     }
 
     public static String getExternalPath() {
+        if (VERSION.SDK_INT >= 28) {
+            return STApplication.getInstance().getDataDir().getAbsolutePath();
+        }
         if (cachedExternalDir != null)
             return cachedExternalDir;
 

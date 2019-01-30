@@ -23,6 +23,7 @@ public class STApplication extends Application {
 
     @Override
     public void onCreate() {
+        mInstance = this;
         TimberUtils.plantAppropriateTree();
 
         Timber.d("Starting Application [BuildVariant: DEBUG]");
@@ -33,7 +34,6 @@ public class STApplication extends Application {
 
         Timber.d("Initialising Activities");
         super.onCreate();
-        mInstance = this;
     }
 
     public static synchronized STApplication getInstance() {
